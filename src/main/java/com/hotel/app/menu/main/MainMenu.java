@@ -1,0 +1,189 @@
+package com.hotel.app.menu.main;
+
+import com.hotel.app.api.HotelResource;
+import com.hotel.app.menu.AbstractMenu;
+import com.hotel.app.menu.IMenu;
+import com.hotel.app.menu.admin.AdminMenu;
+import com.hotel.app.menu.admin.AdminMenuPrompter;
+import com.hotel.app.menu.exception.InvalidMenuOptionException;
+import com.hotel.app.model.Reservation;
+import com.hotel.app.model.room.IRoom;
+import com.hotel.app.validator.PatternValidator;
+
+import java.time.LocalDate;
+import java.util.Collection;
+
+/**
+ * A main menu for the users who want to book a room
+ */
+public class MainMenu extends AbstractMenu {
+
+    private final MainMenuPrompter mainMenuPrompter;
+
+    public MainMenu(MainMenuPrompter mainMenuPrompter) {
+        super(mainMenuPrompter.prompter());
+        this.mainMenuPrompter = mainMenuPrompter;
+    }
+
+    private void createAnAccount() {
+
+        String createAnAccount = """
+
+                =====================================
+                | Option 3: Create an Account       |
+                =====================================""";
+
+        System.out.println(createAnAccount);
+
+        String email = mainMenuPrompter.promptEmail();
+        String firstname = mainMenuPrompter.promptFirstName();
+        String lastname = mainMenuPrompter.promptLastName();
+
+        try {
+            HotelResource.getInstance().createACustomer(email, firstname, lastname);
+            System.out.println("Customer created successfully!");
+        } catch (Exception ex) {
+            System.out.printf("Unable to create customer. [Reason=%s].\n", ex.getLocalizedMessage());
+        } finally {
+            String answer = mainMenuPrompter.promptCreateAnotherCustomer();
+            PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
+            if (yesValidator.validate(answer)) {
+                createAnAccount();
+            } else {
+                mainMenuPrompter.prompter().promptEnterKey();
+
+                displayMenu();
+            }
+        }
+    }
+
+    private void displayAdmin() {
+        AdminMenuPrompter adminMenuPrompter = new AdminMenuPrompter(mainMenuPrompter);
+        IMenu admin = new AdminMenu(adminMenuPrompter, this);
+        admin.displayMenu();
+    }
+
+    @Override
+    public boolean execute(int selectedOption) throws InvalidMenuOptionException {
+        switch (selectedOption) {
+            case 1 -> // Find and reserve a room
+                    findAndReserveARoom();
+            case 2 ->  // See my reservations
+                    seeMyReservations();
+            case 3 -> // Create an account
+                    createAnAccount();
+            case 4 -> // Admin
+                    displayAdmin();
+            case 5 -> // Exit
+                    exit();
+            default -> throw new InvalidMenuOptionException("Please enter an option number between 1 and 5.");
+        }
+        return true;
+    }
+
+    @Override
+    public String initMenu() {
+        return """
+
+                =====================================
+                |           Main  Menu              |
+                =====================================
+                | Options:                          |
+                | 1. Find and reserve a room        |
+                | 2. See my reservations            |
+                | 3. Create an account              |
+                | 4. Admin                          |
+                | 5. Exit                           |
+                =====================================
+                Please type a number for the menu option:\s""";
+    }
+
+    @Override
+    public boolean isValidOption(int option) {
+        return option > 0 && option < 6;
+    }
+
+    private void exit() {
+        prompter.scanner().close();
+        System.exit(-1);
+    }
+
+    // Auxiliary method to handle the execution of Option 1 - Find and reserve a room
+    private void findAndReserveARoom() {
+
+        String findAndReserveARoom = """
+
+                =====================================
+                | Option 1: Find and Reserve a Room  |
+                =====================================""";
+
+        System.out.println(findAndReserveARoom);
+
+        LocalDate checkInDate = mainMenuPrompter.promptCheckInDate();
+        LocalDate checkOutDate = mainMenuPrompter.promptCheckOutDate();
+
+        if (checkInDate.equals(checkOutDate) || checkInDate.isAfter(checkOutDate)) {
+            throw new IllegalArgumentException("Check-in date must be before check-out date.");
+        }
+
+        LocalDate now = LocalDate.now();
+        if (checkInDate.isBefore(now) || checkOutDate.isBefore(now)) {
+            throw new IllegalArgumentException("Check-in date and check-out dates must be in the future.");
+        }
+
+        Collection<IRoom> rooms = HotelResource.getInstance().findARoom(checkInDate, checkOutDate);
+
+        if (rooms == null || rooms.isEmpty()) {
+            System.out.println("No rooms available for the date range provided.");
+        } else {
+            System.out.println(rooms);
+
+            String answer = mainMenuPrompter.promptReserveRoom();
+            PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
+            if (yesValidator.validate(answer)) {
+                reserveRoom(checkInDate, checkOutDate);
+            }
+        }
+
+        mainMenuPrompter.prompter().promptEnterKey();
+
+        displayMenu();
+
+    }
+
+    private void reserveRoom(LocalDate checkIn, LocalDate checkOut) {
+        String email = mainMenuPrompter.promptEmail();
+        String roomNumber = mainMenuPrompter.promptRoomNumber();
+
+        IRoom room = HotelResource.getInstance().getRoom(roomNumber);
+
+        Reservation reservation = HotelResource.getInstance().bookARoom(email, room, checkIn, checkOut);
+
+        System.out.println(reservation);
+        System.out.println("Reservation created successfully!");
+    }
+
+    // Auxiliary method to handle the execution of Option 2 - See my reservations
+    private void seeMyReservations() {
+
+        String seeMyReservations = """
+
+                =====================================
+                | Option 2: See My Reservations     |
+                =====================================""";
+
+        System.out.println(seeMyReservations);
+
+        String email = mainMenuPrompter.promptEmail();
+        Collection<Reservation> reservations = HotelResource.getInstance().getCustomersReservations(email);
+        if (reservations == null || reservations.isEmpty()) {
+            System.out.println("Looks like you have no reservations.");
+        } else {
+            System.out.println(reservations);
+        }
+
+        mainMenuPrompter.prompter().promptEnterKey();
+
+        displayMenu();
+    }
+}
