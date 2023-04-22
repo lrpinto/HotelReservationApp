@@ -42,7 +42,7 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     }
 
     /**
-     * Prompt a user whether for the number for a room.
+     * Prompt a user for the number for a room.
      *
      * @return a String representing an alphanumeric room number.
      */
