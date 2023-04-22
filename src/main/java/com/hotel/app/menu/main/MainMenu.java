@@ -137,7 +137,7 @@ public class MainMenu extends AbstractMenu {
         if (rooms == null || rooms.isEmpty()) {
             System.out.println("No rooms available for the date range provided.");
         } else {
-            System.out.println(rooms);
+            rooms.forEach(System.out::println);
 
             String answer = mainMenuPrompter.promptReserveRoom();
             PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
@@ -158,9 +158,8 @@ public class MainMenu extends AbstractMenu {
 
         IRoom room = HotelResource.getInstance().getRoom(roomNumber);
 
-        Reservation reservation = HotelResource.getInstance().bookARoom(email, room, checkIn, checkOut);
+        HotelResource.getInstance().bookARoom(email, room, checkIn, checkOut);
 
-        System.out.println(reservation);
         System.out.println("Reservation created successfully!");
     }
 

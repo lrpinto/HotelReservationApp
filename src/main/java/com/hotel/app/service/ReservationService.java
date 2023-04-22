@@ -54,7 +54,7 @@ public class ReservationService {
         return this.rooms.stream()
                 .filter(room -> room.getRoomNumber().equals(roomId))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unable to find room with the provided room ID"));
+                .orElseThrow(() -> new IllegalArgumentException("Unable to find room with the provided room number."));
     }
 
     public Collection<IRoom> getAllRooms() {

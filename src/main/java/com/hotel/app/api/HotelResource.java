@@ -37,6 +37,9 @@ public class HotelResource {
 
     public Reservation bookARoom(String customerEmail, IRoom room, LocalDate checkInDate, LocalDate checkOutDate) {
         Customer customer = getCustomer(customerEmail);
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer with the provided email does not exist.");
+        }
         return ReservationService.getInstance().reserveARoom(customer, room, checkInDate, checkOutDate);
     }
 
