@@ -9,8 +9,13 @@ import java.util.Objects;
  */
 public class Room implements IRoom {
 
+    // The room number
     protected final String roomNumber;
+
+    // The room type
     protected final RoomType roomType;
+
+    // The room's price per night
     protected final Double price;
 
     /**
