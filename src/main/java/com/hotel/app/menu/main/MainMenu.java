@@ -15,55 +15,29 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 /**
- * A main menu for the users who want to book a room
+ * MainMenu.java
+ *
+ * A class that provides main functionality to interact with a user via the console.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
  */
 public class MainMenu extends AbstractMenu {
 
     private final MainMenuPrompter mainMenuPrompter;
 
+    /**
+     * Construct a new instance of MainMenu with the given main menu prompter.
+     *
+     * @param mainMenuPrompter - the main given prompter
+     */
     public MainMenu(MainMenuPrompter mainMenuPrompter) {
         super(mainMenuPrompter.prompter());
         this.mainMenuPrompter = mainMenuPrompter;
     }
 
-    private void createAnAccount() {
-
-        String createAnAccount = """
-
-                =====================================
-                | Option 3: Create an Account       |
-                =====================================""";
-
-        System.out.println(createAnAccount);
-
-        String email = mainMenuPrompter.promptEmail();
-        String firstname = mainMenuPrompter.promptFirstName();
-        String lastname = mainMenuPrompter.promptLastName();
-
-        try {
-            HotelResource.getInstance().createACustomer(email, firstname, lastname);
-            System.out.println("Customer created successfully!");
-        } catch (Exception ex) {
-            System.out.printf("Unable to create customer. [Reason=%s].\n", ex.getLocalizedMessage());
-        } finally {
-            String answer = mainMenuPrompter.promptCreateAnotherCustomer();
-            PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
-            if (yesValidator.validate(answer)) {
-                createAnAccount();
-            } else {
-                mainMenuPrompter.prompter().promptEnterKey();
-
-                displayMenu();
-            }
-        }
-    }
-
-    private void displayAdmin() {
-        AdminMenuPrompter adminMenuPrompter = new AdminMenuPrompter(mainMenuPrompter);
-        IMenu admin = new AdminMenu(adminMenuPrompter, this);
-        admin.displayMenu();
-    }
-
+    /**
+     * @see IMenu#execute(int)
+     */
     @Override
     public boolean execute(int selectedOption) throws InvalidMenuOptionException {
         switch (selectedOption) {
@@ -82,6 +56,9 @@ public class MainMenu extends AbstractMenu {
         return true;
     }
 
+    /**
+     * @see IMenu#initMenu()
+     */
     @Override
     public String initMenu() {
         return """
@@ -99,17 +76,15 @@ public class MainMenu extends AbstractMenu {
                 Please type a number for the menu option:\s""";
     }
 
+    /**
+     * @see IMenu#isValidOption(int)
+     */
     @Override
     public boolean isValidOption(int option) {
         return option > 0 && option < 6;
     }
 
-    private void exit() {
-        prompter.scanner().close();
-        System.exit(-1);
-    }
-
-    // Auxiliary method to handle the execution of Option 1 - Find and reserve a room
+    // Auxiliary method to handle the execution of Option 1 - Find and reserve a room (this method handles finding a room)
     private void findAndReserveARoom() {
 
         String findAndReserveARoom = """
@@ -152,6 +127,7 @@ public class MainMenu extends AbstractMenu {
 
     }
 
+    // Auxiliary method to handle the execution of Option 1 - Find and Reserve a Room (this method handle reserving a room)
     private void reserveRoom(LocalDate checkIn, LocalDate checkOut) {
         String email = mainMenuPrompter.promptEmail();
         String roomNumber = mainMenuPrompter.promptRoomNumber();
@@ -190,5 +166,51 @@ public class MainMenu extends AbstractMenu {
         mainMenuPrompter.prompter().promptEnterKey();
 
         displayMenu();
+    }
+
+    // Auxiliary method to handle the execution of Option 3 - Create an Account
+    private void createAnAccount() {
+
+        String createAnAccount = """
+
+                =====================================
+                | Option 3: Create an Account       |
+                =====================================""";
+
+        System.out.println(createAnAccount);
+
+        String email = mainMenuPrompter.promptEmail();
+        String firstname = mainMenuPrompter.promptFirstName();
+        String lastname = mainMenuPrompter.promptLastName();
+
+        try {
+            HotelResource.getInstance().createACustomer(email, firstname, lastname);
+            System.out.println("Customer created successfully!");
+        } catch (Exception ex) {
+            System.out.printf("Unable to create customer. [Reason=%s].\n", ex.getLocalizedMessage());
+        } finally {
+            String answer = mainMenuPrompter.promptCreateAnotherCustomer();
+            PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
+            if (yesValidator.validate(answer)) {
+                createAnAccount();
+            } else {
+                mainMenuPrompter.prompter().promptEnterKey();
+
+                displayMenu();
+            }
+        }
+    }
+
+    // Auxiliary method to handle the execution of Option 4 - Display Admin Menu
+    private void displayAdmin() {
+        AdminMenuPrompter adminMenuPrompter = new AdminMenuPrompter(mainMenuPrompter);
+        IMenu admin = new AdminMenu(adminMenuPrompter, this);
+        admin.displayMenu();
+    }
+
+    // Auxiliary method to handle the execution of Option 5 - Exit
+    private void exit() {
+        prompter.scanner().close();
+        System.exit(0);
     }
 }

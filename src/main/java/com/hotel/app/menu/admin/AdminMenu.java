@@ -27,8 +27,8 @@ public class AdminMenu extends AbstractMenu {
     /**
      * Construct a new instance of AdminMenu with the given admin prompter and the given main menu.
      *
-     * @param adminMenuPrompter - the admin given prompter.
-     * @param mainMenu - the given main menu.
+     * @param adminMenuPrompter - the admin given prompter
+     * @param mainMenu - the given main menu
      */
     public AdminMenu(AdminMenuPrompter adminMenuPrompter, MainMenu mainMenu) {
         super(adminMenuPrompter.mainMenuPrompter().prompter());
