@@ -41,7 +41,7 @@ public class ReservationService {
         Set<IRoom> availableRooms = new HashSet<>(rooms);
         this.reservationsByCustomer.values().forEach(reservations -> reservations.forEach(reservation -> {
             LocalDate reservationCheckInDate = reservation.getCheckInDate();
-            LocalDate reservationCheckOutDate = reservation.getCheckInDate();
+            LocalDate reservationCheckOutDate = reservation.getCheckOutDate();
             if (!reservationCheckInDate.isAfter(checkOutDate) || !reservationCheckOutDate.isBefore(checkInDate)) {
                 availableRooms.remove(reservation.getRoom());
             }
