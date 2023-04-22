@@ -6,10 +6,25 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Prompter.java
+ *
+ * An implementation of a IPrompter, which uses a scanner,
+ * and provides general prompting operations commonly used within this application.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public record Prompter(Scanner scanner) implements IPrompter {
 
-    private static final String PRESS_ENTER_TO_CONTINUE_PROMPT = "\nPlease press 'ENTER' to continue.";
+    /**
+     * The message shown to the user when requesting them to press the 'enter' key.
+     */
+    public static final String PRESS_ENTER_TO_CONTINUE_PROMPT = "\nPlease press 'ENTER' to continue.";
 
+    /**
+     * (non-javadoc)
+     * @see IPrompter#promptDouble(java.lang.String, java.lang.String, double)
+     */
     @Override
     public double promptDouble(String primaryPrompt, String secondaryPrompt, double minValue) {
         Double aDouble = null;
@@ -32,6 +47,10 @@ public record Prompter(Scanner scanner) implements IPrompter {
         return aDouble;
     }
 
+    /**
+     * (non-javadoc)
+     * @see IPrompter#promptInt(String, String, int, int)
+     */
     @Override
     public int promptInt(String primaryPrompt, String secondaryPrompt, int min, int max) {
         Integer aInt = null;
@@ -53,6 +72,10 @@ public record Prompter(Scanner scanner) implements IPrompter {
         return aInt;
     }
 
+    /**
+     * (non-javadoc)
+     * @see IPrompter#promptString(String, String, String)
+     */
     @Override
     @NotNull
     public String promptString(String primaryPrompt, String secondaryPrompt, String regex) {
@@ -77,7 +100,10 @@ public record Prompter(Scanner scanner) implements IPrompter {
         return input;
     }
 
-
+    /**
+     * (non-javadoc)
+     * @see IPrompter#promptDate(String, String, String)
+     */
     @Override
     @NotNull
     public LocalDate promptDate(String primaryPrompt, String secondaryPrompt, String regex) {
@@ -102,6 +128,11 @@ public record Prompter(Scanner scanner) implements IPrompter {
         return date;
     }
 
+    /**
+     * (non-javadoc)
+     * @see IPrompter#promptEnterKey()
+     */
+    @Override
     public void promptEnterKey(){
         scanner().nextLine();
         System.out.print(PRESS_ENTER_TO_CONTINUE_PROMPT);

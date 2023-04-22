@@ -35,6 +35,11 @@ public interface IPrompter {
     double promptDouble(String primaryPrompt, String secondaryPrompt, double minValue);
 
     /**
+     * Prompt the user for the enter key.
+     */
+    void promptEnterKey();
+
+    /**
      * Prompt the user for an integer value between the given minimum and maximum values.
      *
      * @param primaryPrompt - the initial prompt to display
