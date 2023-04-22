@@ -54,7 +54,7 @@ public class MainMenuPrompt {
      */
     public static final String RESERVE_ROOM_PRIMARY_PROMPT = "Would you like to reserve a room - answer 'y' or 'n': ";
     /**
-     * The initial message to prompt a user for room number.
+     * The initial message to prompt a user for a room number.
      */
     public static final String ROOM_NUMBER_PRIMARY_PROMPT = "Please type the room number and press enter: ";
     /**

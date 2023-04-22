@@ -4,6 +4,7 @@ import com.hotel.app.menu.main.MainMenuPrompter;
 import com.hotel.app.model.room.RoomType;
 
 import static com.hotel.app.constant.Regex.*;
+import static com.hotel.app.menu.admin.AdminMenuPrompt.*;
 
 /**
  * AdminMenuPrompter.java
@@ -23,9 +24,7 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     public String promptAddAnotherRoom() {
         return mainMenuPrompter()
                 .prompter()
-                .promptString("Would you like to add another room - answer 'y' or 'n': ",
-                        "Please enter y (yes) or n (no): ",
-                        YES_OR_NO_REGEX);
+                .promptString(ADD_ANOTHER_ROOM_ANSWER_Y_OR_N, ENTER_Y_YES_OR_N_NO, YES_OR_NO_REGEX);
     }
 
     /**
@@ -36,9 +35,7 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     public double promptPrice() {
         return mainMenuPrompter()
                 .prompter()
-                .promptDouble("Enter price per night: ",
-                        "Please enter a price per night - must be zero or positive: ",
-                        0d);
+                .promptDouble(ENTER_PRICE_PER_NIGHT, PRICE_PER_NIGHT_MUST_BE_ZERO_OR_POSITIVE, 0d);
     }
 
     /**
@@ -49,9 +46,7 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     public String promptRoomNumber() {
         return mainMenuPrompter()
                 .prompter()
-                .promptString("Please enter a room number - must be alphanumeric, e.g. 1A: ",
-                        "Please enter a room number - must be alphanumeric, e.g. 1A: ",
-                        ALPHANUMERIC_STRING_REGEX);
+                .promptString(ENTER_A_ROOM_NUMBER, ROOM_NUMBER_MUST_BE_ALPHANUMERIC, ALPHANUMERIC_STRING_REGEX);
     }
 
     /**
@@ -62,10 +57,8 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     public RoomType promptRoomType() {
         int roomType = mainMenuPrompter()
                 .prompter()
-                .promptInt("Enter room type - 1 single, or 2 double: ",
-                        "Please enter a valid room type - 1 for single room, or 2 for double room: ",
-                        1, 2);
+                .promptInt(ENTER_ROOM_TYPE, ENTER_A_VALID_ROOM_TYPE, MIN_ROOM_TYPE, MAX_ROOM_TYPE);
 
-        return roomType == 1 ?  RoomType.SINGLE : RoomType.DOUBLE;
+        return roomType == MIN_ROOM_TYPE ?  RoomType.SINGLE : RoomType.DOUBLE;
     }
 }
