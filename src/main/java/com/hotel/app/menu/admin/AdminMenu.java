@@ -2,6 +2,7 @@ package com.hotel.app.menu.admin;
 
 import com.hotel.app.api.AdminResource;
 import com.hotel.app.menu.AbstractMenu;
+import com.hotel.app.menu.IMenu;
 import com.hotel.app.menu.exception.InvalidMenuOptionException;
 import com.hotel.app.menu.main.MainMenu;
 import com.hotel.app.model.Customer;
@@ -12,19 +13,30 @@ import com.hotel.app.model.room.RoomType;
 import java.util.Collection;
 
 /**
- * An admin main.java.main.java.menu for administrative functions
+ * AdminMenu.java
+ *
+ * A class that provides administrative functionality to interact with a user via the console.
  */
 public class AdminMenu extends AbstractMenu {
 
     private final AdminMenuPrompter adminMenuPrompter;
     private final MainMenu mainMenu;
 
+    /**
+     * Construct a new instance of AdminMenu with the given admin prompter and the given main menu.
+     *
+     * @param adminMenuPrompter - the admin given prompter.
+     * @param mainMenu - the given main menu.
+     */
     public AdminMenu(AdminMenuPrompter adminMenuPrompter, MainMenu mainMenu) {
         super(adminMenuPrompter.mainMenuPrompter().prompter());
         this.mainMenu = mainMenu;
         this.adminMenuPrompter = adminMenuPrompter;
     }
 
+    /**
+     * @see IMenu#execute(int)
+     */
     @Override
     public boolean execute(int selectedOption) throws InvalidMenuOptionException {
         switch (selectedOption) {
@@ -43,6 +55,9 @@ public class AdminMenu extends AbstractMenu {
         return true;
     }
 
+    /**
+     * @see IMenu#initMenu()
+     */
     @Override
     public String initMenu() {
         return """
@@ -60,11 +75,15 @@ public class AdminMenu extends AbstractMenu {
                 Please type a number for the menu option:\s""";
     }
 
+    /**
+     * @see IMenu#isValidOption(int)
+     */
     @Override
     public boolean isValidOption(int option) {
         return option > 0 && option < 6;
     }
 
+    // Auxiliary method to handle adding a room.
     private void addARoom() {
 
         String addARoom = """
@@ -97,10 +116,12 @@ public class AdminMenu extends AbstractMenu {
         }
     }
 
+    // Auxiliary method to handle going back to the main menu.
     private void backToMainMenu() {
         mainMenu.displayMenu();
     }
 
+    // Auxiliary method to handle displaying all customers.
     private void seeAllCustomers() {
 
         String seeAllCustomers = """
@@ -123,6 +144,7 @@ public class AdminMenu extends AbstractMenu {
         displayMenu();
     }
 
+    // Auxiliary method to handle displaying all reservations.
     private void seeAllReservations() {
 
         String seeAllReservations = """
@@ -140,6 +162,7 @@ public class AdminMenu extends AbstractMenu {
         displayMenu();
     }
 
+    // Auxiliary method to handle displaying all rooms.
     private void seeAllRooms() {
 
         String seeAllRooms = """
