@@ -20,8 +20,8 @@ public class Room implements IRoom {
     }
 
     @Override
-    public Double getRoomPrice(double roomPrice) {
-        return roomPrice;
+    public Double getRoomPrice() {
+        return price;
     }
 
     @Override
