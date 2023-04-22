@@ -14,10 +14,13 @@ import static com.hotel.app.constant.Regex.EMAIL_REGEX;
  */
 public class Customer {
 
+    // The customer's email
     private final String email;
 
+    // The customer's first name
     private final String firstName;
 
+    // The customer's last name
     private final String lastName;
 
     /**
@@ -66,6 +69,10 @@ public class Customer {
         return lastName;
     }
 
+    /**
+     * (non-javadoc)
+     * @see Object#equals(Object)
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,11 +81,20 @@ public class Customer {
         return Objects.equals(getEmail(), customer.getEmail());
     }
 
+    /**
+     * (non-javadoc)
+     * @see Object#hashCode()
+     */
     @Override
     public int hashCode() {
         return Objects.hash(getEmail());
     }
 
+    /**
+     * A String representing a Customer instance.
+     *
+     * @return this Customer instance represented as String.
+     */
     @Override
     public String toString() {
         return "Email: " + email + ", First Name: " + firstName + ", Last Name: " + lastName;
