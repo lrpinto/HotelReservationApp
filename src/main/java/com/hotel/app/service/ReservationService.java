@@ -73,7 +73,7 @@ public class ReservationService {
     /**
      * Get the room with given room number.
      *
-     * @param roomNumber
+     * @param roomNumber - the given room number
      * @return the IRoom instance representing a room with the given room number.
      */
     public IRoom getARoom(String roomNumber) {

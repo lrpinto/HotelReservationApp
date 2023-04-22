@@ -66,7 +66,7 @@ public class CustomerService {
      * Get the Customer instance with the given email address.
      *
      * @param email - the given email address.
-     * @return a Customer instance with the given email, or null if it does not exists.
+     * @return a Customer instance with the given email, or null if it does not exist.
      */
     public Customer getCustomer(String email) {
         return this.customers.get(email);
