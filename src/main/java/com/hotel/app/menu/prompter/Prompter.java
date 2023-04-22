@@ -6,6 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+import static com.hotel.app.menu.prompter.Prompt.PRESS_ENTER_TO_CONTINUE_PROMPT;
+
 /**
  * Prompter.java
  *
@@ -15,11 +17,6 @@ import java.util.Scanner;
  * @author Luisa Pinto | luisa.rebelopinto@gmail.com
  */
 public record Prompter(Scanner scanner) implements IPrompter {
-
-    /**
-     * The message shown to the user when requesting them to press the 'enter' key.
-     */
-    public static final String PRESS_ENTER_TO_CONTINUE_PROMPT = "\nPlease press 'ENTER' to continue.";
 
     /**
      * (non-javadoc)
