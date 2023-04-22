@@ -6,6 +6,8 @@ import java.util.Objects;
  * Room.java
  *
  * A class which represents a room.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
  */
 public class Room implements IRoom {
 

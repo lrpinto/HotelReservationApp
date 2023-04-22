@@ -8,9 +8,10 @@ import static com.hotel.app.constant.Regex.EMAIL_REGEX;
 
 /**
  * Customer.java
- * A class which represents a customer
  *
- * @author luisapinto
+ * A class which represents a customer.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
  */
 public class Customer {
 
