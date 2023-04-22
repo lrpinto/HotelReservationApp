@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * CustomerService.java
- *
+ * <p>
  * A class which provides Customer services.
  *
  * @author Luisa Pinto | luisa.rebelopinto@gmail.com

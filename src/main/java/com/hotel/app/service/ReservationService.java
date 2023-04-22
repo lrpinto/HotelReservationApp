@@ -7,6 +7,13 @@ import com.hotel.app.model.room.IRoom;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * ReservationService.java
+ *
+ * A class which provides Reservation services.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public class ReservationService {
 
     private static ReservationService instance;

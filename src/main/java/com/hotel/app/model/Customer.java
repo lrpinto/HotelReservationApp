@@ -8,7 +8,7 @@ import static com.hotel.app.constant.Regex.EMAIL_REGEX;
 
 /**
  * Customer.java
- *
+ * <p>
  * A class which represents a customer.
  *
  * @author Luisa Pinto | luisa.rebelopinto@gmail.com
@@ -26,9 +26,10 @@ public class Customer {
 
     /**
      * Create a new Customer with the given email, first name, and last name
-     *  @param firstName the first name for this customer
-     * @param lastName the last name for this customer
-     * @param email the given email for this customer
+     *
+     * @param firstName the first name for this customer
+     * @param lastName  the last name for this customer
+     * @param email     the given email for this customer
      */
     public Customer(String email, String firstName, String lastName) {
         super();
@@ -41,15 +42,6 @@ public class Customer {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    /**
-     * Return the customer email
-     *
-     * @return a String representing the customer email
-     */
-    public String getEmail() {
-        return email;
     }
 
     /**
@@ -72,6 +64,17 @@ public class Customer {
 
     /**
      * (non-javadoc)
+     *
+     * @see Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail());
+    }
+
+    /**
+     * (non-javadoc)
+     *
      * @see Object#equals(Object)
      */
     @Override
@@ -83,12 +86,12 @@ public class Customer {
     }
 
     /**
-     * (non-javadoc)
-     * @see Object#hashCode()
+     * Return the customer email
+     *
+     * @return a String representing the customer email
      */
-    @Override
-    public int hashCode() {
-        return Objects.hash(getEmail());
+    public String getEmail() {
+        return email;
     }
 
     /**
