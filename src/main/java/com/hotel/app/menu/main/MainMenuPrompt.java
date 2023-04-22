@@ -1,5 +1,12 @@
 package com.hotel.app.menu.main;
 
+/**
+ * MainMenuPrompt.java
+ * <p>
+ * A class of constants used in user prompts by the MainMenuPrompter.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public class MainMenuPrompt {
     /**
      * The initial message to prompt a user for a check-in date.
