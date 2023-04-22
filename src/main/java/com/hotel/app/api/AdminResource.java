@@ -21,7 +21,7 @@ public class AdminResource {
 
     private static AdminResource instance;
 
-    // This constructor his hidden because this class is a Singleton.
+    // This constructor is hidden because this class is a Singleton.
     private AdminResource() {}
 
     /**
