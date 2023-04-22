@@ -5,8 +5,21 @@ import com.hotel.app.model.room.RoomType;
 
 import static com.hotel.app.constant.Regex.*;
 
+/**
+ * AdminMenuPrompter.java
+ *
+ * This record is solely responsible for displaying administrative prompts to the user,
+ * and collecting the respective user inputs.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
 
+    /**
+     * Prompt a user whether they want to add another room.
+     *
+     * @return a String which can be y (yes) or n (no).
+     */
     public String promptAddAnotherRoom() {
         return mainMenuPrompter()
                 .prompter()
@@ -15,6 +28,11 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
                         YES_OR_NO_REGEX);
     }
 
+    /**
+     * Prompt a user whether for the price of a room.
+     *
+     * @return a double representing a zero or positive price.
+     */
     public double promptPrice() {
         return mainMenuPrompter()
                 .prompter()
@@ -23,6 +41,11 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
                         0d);
     }
 
+    /**
+     * Prompt a user whether for the number for a room.
+     *
+     * @return a String representing an alphanumeric room number.
+     */
     public String promptRoomNumber() {
         return mainMenuPrompter()
                 .prompter()
@@ -31,6 +54,11 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
                         ALPHANUMERIC_STRING_REGEX);
     }
 
+    /**
+     * Prompt a user whether for the type of room.
+     *
+     * @return a RoomType representing a room type.
+     */
     public RoomType promptRoomType() {
         int roomType = mainMenuPrompter()
                 .prompter()

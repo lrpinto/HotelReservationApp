@@ -16,6 +16,8 @@ import java.util.Collection;
  * AdminMenu.java
  *
  * A class that provides administrative functionality to interact with a user via the console.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
  */
 public class AdminMenu extends AbstractMenu {
 
