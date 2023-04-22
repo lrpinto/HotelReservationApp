@@ -16,10 +16,13 @@ public class Reservation {
 
     // The check-in date for this reservation
     private final LocalDate checkInDate;
+
     // The check-out date for this reservation
     private final LocalDate checkOutDate;
+
     // The customer holding the reservation
     private final Customer customer;
+
     // The room instance in this Reservation
     private final IRoom room;
 

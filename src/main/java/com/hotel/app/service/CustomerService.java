@@ -40,9 +40,9 @@ public class CustomerService {
     /**
      * Add the customer with the given email, first name, and last name.
      *
-     * @param email - the given email
+     * @param email     - the given email
      * @param firstName - the given first name
-     * @param lastName - the given last name
+     * @param lastName  - the given last name
      */
     public void addCustomer(String email, String firstName, String lastName) {
         if (this.customers.containsKey(email)) {
@@ -54,6 +54,15 @@ public class CustomerService {
     }
 
     /**
+     * Get the all Customer instances held by this CustomerService instance.
+     *
+     * @return a collection of Customer instances.
+     */
+    public Collection<Customer> getAllCustomers() {
+        return this.customers.values();
+    }
+
+    /**
      * Get the Customer instance with the given email address.
      *
      * @param email - the given email address.
@@ -61,14 +70,5 @@ public class CustomerService {
      */
     public Customer getCustomer(String email) {
         return this.customers.get(email);
-    }
-
-    /**
-     * Get the all Customer instances held by this CustomerService instance.
-     *
-     * @return a collection of Customer instances.
-     */
-    public Collection<Customer> getAllCustomers() {
-        return this.customers.values();
     }
 }
