@@ -6,6 +6,7 @@ import com.hotel.app.menu.IMenu;
 import com.hotel.app.menu.admin.AdminMenu;
 import com.hotel.app.menu.admin.AdminMenuPrompter;
 import com.hotel.app.menu.exception.InvalidMenuOptionException;
+import com.hotel.app.model.Customer;
 import com.hotel.app.model.Reservation;
 import com.hotel.app.model.room.IRoom;
 import com.hotel.app.validator.PatternValidator;
@@ -175,11 +176,16 @@ public class MainMenu extends AbstractMenu {
         System.out.println(seeMyReservations);
 
         String email = mainMenuPrompter.promptEmail();
-        Collection<Reservation> reservations = HotelResource.getInstance().getCustomersReservations(email);
-        if (reservations == null || reservations.isEmpty()) {
-            System.out.println("Looks like you have no reservations.");
+        Customer customer = HotelResource.getInstance().getCustomer(email);
+        if (customer == null) {
+            System.out.println("Customer with the provided email does not exist.");
         } else {
-            System.out.println(reservations);
+            Collection<Reservation> reservations = HotelResource.getInstance().getCustomersReservations(email);
+            if (reservations == null || reservations.isEmpty()) {
+                System.out.println("Looks like you have no reservations.");
+            } else {
+                System.out.println(reservations);
+            }
         }
 
         mainMenuPrompter.prompter().promptEnterKey();

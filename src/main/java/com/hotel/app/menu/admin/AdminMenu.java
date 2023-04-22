@@ -115,7 +115,7 @@ public class AdminMenu extends AbstractMenu {
         if (customers == null || customers.isEmpty()) {
             System.out.println("There are no customers yet.");
         } else {
-            System.out.println(customers);
+            customers.forEach(System.out::println);
         }
 
         adminMenuPrompter.mainMenuPrompter().prompter().promptEnterKey();
@@ -154,7 +154,7 @@ public class AdminMenu extends AbstractMenu {
         if (rooms == null || rooms.isEmpty()) {
             System.out.println("There are no rooms yet.");
         } else {
-            System.out.println(rooms);
+            rooms.forEach(System.out::println);
         }
 
         adminMenuPrompter.mainMenuPrompter().prompter().promptEnterKey();
