@@ -7,8 +7,20 @@ import com.hotel.app.menu.main.MainMenuPrompter;
 
 import java.util.Scanner;
 
+/**
+ * HotelApplication.java
+ * <p>
+ * A class which is the entry point for this application.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public class HotelApplication {
 
+    /**
+     * Entry point method that starts this application.
+     *
+     * @param args - the arguments for this application to run with
+     */
     public static void main(String[] args) {
 
         System.out.println("Welcome to the Hotel Reservation Application");
