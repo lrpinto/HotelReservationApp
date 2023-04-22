@@ -7,6 +7,16 @@ import com.hotel.app.service.ReservationService;
 
 import java.util.Collection;
 
+/**
+ * AdminResource.java
+ *
+ * A class resource which delegates admin operations to the respective services.
+ *
+ * The AdminResource has little to no behavior contained inside the class
+ * and should make use of the Service classes to implement its methods.
+ *
+ * @author Luisa Pinto | luisa.rebelopinto@gmail.com
+ */
 public class AdminResource {
 
     private static AdminResource instance;
