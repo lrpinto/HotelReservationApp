@@ -69,6 +69,40 @@ public class Reservation {
     }
 
     /**
+     * Return whether this Reservation is after the given check-in and check-out dates.
+     *
+     * @param checkInDate  - the given check-in date
+     * @param checkOutDate - the given check-out date
+     * @return true if this Reservation starts and ends after the period determined by the given dates, false otherwise.
+     */
+    public boolean isAfter(LocalDate checkInDate, LocalDate checkOutDate) {
+        return checkInDate.isBefore(this.checkInDate) &&
+                (checkOutDate.isBefore(this.checkInDate) || checkOutDate.isEqual(this.checkInDate));
+    }
+
+    /**
+     * Return whether this Reservation is before the given check-in and check-out dates.
+     *
+     * @param checkInDate  - the given check-in date
+     * @param checkOutDate - the given check-out date
+     * @return true if this Reservation starts and ends before the period determined by the given dates, false otherwise.
+     */
+    public boolean isBefore(LocalDate checkInDate, LocalDate checkOutDate) {
+        return this.checkInDate.isBefore(checkInDate) &&
+                (this.checkOutDate.isBefore(checkOutDate) || this.checkOutDate.equals(checkOutDate));
+    }
+
+    /**
+     * Return whether this reservation overlaps the period determined by the given check-in and checkout dates.
+     *
+     * @param checkInDate - the given check-in date
+     * @param checkOutDate - the given check-out date
+     * @return true if there is an overlap, false otherwise.
+     */
+    public boolean isOverlap(LocalDate checkInDate, LocalDate checkOutDate) {
+        return !(isAfter(checkInDate, checkOutDate) || isBefore(checkInDate, checkOutDate));
+    }
+    /**
      * (non-javadoc)
      *
      * @see Object#hashCode()
@@ -104,4 +138,5 @@ public class Reservation {
                 "Check-in date:\n\t" + checkInDate + "\n" +
                 "Check-out date\n\t:" + checkOutDate;
     }
+
 }
