@@ -89,7 +89,7 @@ public class Reservation {
      */
     public boolean isBefore(LocalDate checkInDate, LocalDate checkOutDate) {
         return this.checkInDate.isBefore(checkInDate) &&
-                (this.checkOutDate.isBefore(checkOutDate) || this.checkOutDate.equals(checkOutDate));
+                (this.checkOutDate.isBefore(checkInDate) || this.checkOutDate.equals(checkInDate));
     }
 
     /**
