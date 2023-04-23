@@ -2,6 +2,9 @@ package com.hotel.app.menu;
 
 import com.hotel.app.menu.exception.InvalidMenuOptionException;
 import com.hotel.app.menu.prompter.IPrompter;
+import com.hotel.app.validator.PatternValidator;
+
+import java.util.NoSuchElementException;
 
 /**
  * AbstractMenu.java
@@ -39,8 +42,20 @@ public abstract class AbstractMenu implements IMenu {
         System.out.print(menu);
         do {
             try {
-                selectedOption = prompter.scanner().nextInt();
-            }   catch (Exception exception) {
+                if (prompter.scanner().hasNext()) {
+                    String next = prompter.scanner().next();
+                    try {
+                        selectedOption = Integer.parseInt(next);
+                        if (!isValidOption(selectedOption)) {
+                            System.out.print("Please enter a valid option number: ");
+                        }
+                    } catch (NumberFormatException ex) {
+                        System.out.print("Please enter a valid option number: ");
+                    }
+                }
+            } catch (IllegalStateException ex) {
+                System.out.print("Error reading input. Please restart the application.");
+            } catch (NoSuchElementException ex) {
                 System.out.print("Please enter a valid option number: ");
             }
         } while(!isValidOption(selectedOption));
