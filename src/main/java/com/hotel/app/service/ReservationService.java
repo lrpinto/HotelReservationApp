@@ -100,7 +100,11 @@ public class ReservationService {
             return;
         }
 
-        this.reservationsByCustomer.values().forEach(System.out::println);
+        this.reservationsByCustomer.values().forEach(reservations -> reservations.forEach(reservation -> {
+            System.out.println("================================================================");
+            System.out.println(reservation);
+            System.out.println("================================================================");
+        }));
     }
 
     /**
