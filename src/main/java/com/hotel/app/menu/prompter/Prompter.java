@@ -25,7 +25,7 @@ public record Prompter(Scanner scanner) implements IPrompter {
     @Override
     public double promptDouble(String primaryPrompt, String secondaryPrompt, double minValue) {
         Double aDouble = null;
-        System.out.println(primaryPrompt);
+        System.out.print(primaryPrompt);
         do {
             try {
                 if (scanner().hasNext()) {
@@ -51,7 +51,7 @@ public record Prompter(Scanner scanner) implements IPrompter {
     @Override
     public int promptInt(String primaryPrompt, String secondaryPrompt, int min, int max) {
         Integer aInt = null;
-        System.out.println(primaryPrompt);
+        System.out.print(primaryPrompt);
         do {
             try {
                 if (scanner().hasNext()) {
