@@ -23,6 +23,7 @@ import java.util.Collection;
  */
 public class MainMenu extends AbstractMenu {
 
+    public static final int DAYS_TO_ADD = 7;
     private final MainMenuPrompter mainMenuPrompter;
 
     /**
@@ -110,8 +111,20 @@ public class MainMenu extends AbstractMenu {
         Collection<IRoom> availableRooms = HotelResource.getInstance().findARoom(checkInDate, checkOutDate);
 
         if (availableRooms == null || availableRooms.isEmpty()) {
-            System.out.println("No availableRooms available for the date range provided.");
-        } else {
+            System.out.println("No available for the date range provided.");
+
+            LocalDate recommendedCheckIn = checkInDate.plusDays(DAYS_TO_ADD);
+            LocalDate recommendedCheckOut = checkOutDate.plusDays(DAYS_TO_ADD);
+
+            availableRooms = HotelResource.getInstance().findARoom(recommendedCheckIn, recommendedCheckOut);
+
+            if (availableRooms != null && !availableRooms.isEmpty()) {
+                System.out.printf("\nShowing recommended rooms for %d days later - from '%s' to '%s':\n",
+                        DAYS_TO_ADD, recommendedCheckIn, recommendedCheckOut);
+            }
+        }
+
+        if (availableRooms != null && !availableRooms.isEmpty()) {
             availableRooms.forEach(System.out::println);
 
             String answer = mainMenuPrompter.promptReserveRoom();
