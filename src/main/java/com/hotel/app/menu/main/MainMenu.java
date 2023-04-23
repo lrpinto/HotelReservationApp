@@ -176,7 +176,7 @@ public class MainMenu extends AbstractMenu {
             if (reservations == null || reservations.isEmpty()) {
                 System.out.println("Looks like you have no reservations.");
             } else {
-                System.out.println(reservations);
+                reservations.forEach(System.out::println);
             }
         }
 
