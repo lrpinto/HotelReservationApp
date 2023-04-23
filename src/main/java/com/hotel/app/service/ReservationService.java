@@ -48,6 +48,9 @@ public class ReservationService {
      * @param room - the given room to add
      */
     public void addIRoom(IRoom room) {
+        if (this.rooms.contains(room)) {
+            throw new IllegalArgumentException("Room already exists");
+        }
         this.rooms.add(room);
     }
 

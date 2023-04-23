@@ -28,7 +28,7 @@ public class Room implements IRoom {
      * @param price - the given price
      */
     public Room(String roomNumber, RoomType roomType, Double price) {
-        this.roomNumber = roomNumber;
+        this.roomNumber = roomNumber != null ? roomNumber.toLowerCase() : "0";
         this.roomType = roomType;
         this.price = price;
     }

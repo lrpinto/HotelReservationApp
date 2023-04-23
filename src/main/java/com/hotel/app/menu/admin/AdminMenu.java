@@ -103,9 +103,8 @@ public class AdminMenu extends AbstractMenu {
         try {
             IRoom room = RoomFactory.create(roomNumber, roomType, price);
             AdminResource.getInstance().addRoom(room);
-        } catch (Exception ex) {
-            System.out.println(
-                    "Oops! Something did no go to plan. Room was not added. Reason: " + ex.getLocalizedMessage());
+        } catch (IllegalArgumentException ex) {
+            System.out.println("Unable to add room. Reason: " + ex.getLocalizedMessage() + ".");
         }
 
         String answer = adminMenuPrompter.promptAddAnotherRoom();
