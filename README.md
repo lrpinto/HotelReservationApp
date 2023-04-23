@@ -3,9 +3,9 @@ A console app to reserve rooms in a hotel.
 
 ## Software Requirements
 
-To run this application you need the following Software installed:
+To run this application the following software must be installed:
 
-- Java SDK 20
+- Java SDK 20+
 
 ```shell
 luisapinto@Luisas-MacBook-Pro HotelReservationApplication % java --version
@@ -14,7 +14,7 @@ OpenJDK Runtime Environment Homebrew (build 20)
 OpenJDK 64-Bit Server VM Homebrew (build 20, mixed mode, sharing)
 ```
 
-- Maven 
+- Maven 3.9.1+
 
 ```shell
 luisapinto@Luisas-MacBook-Pro HotelReservationApplication % mvn -v
