@@ -12,7 +12,7 @@ class CustomerTest {
 
     @BeforeEach
     void setUp() {
-        customerUnderTest = new Customer("firstName", "lastName", "email@nodomain.com");
+        customerUnderTest = new Customer("email@nodomain.com", "firstName", "lastName");
     }
 
     @AfterEach
@@ -22,10 +22,10 @@ class CustomerTest {
 
     @Test
     void testCustomer_ThrowsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Customer("firstName", "lastName", null));
-        assertThrows(IllegalArgumentException.class, () -> new Customer("firstName", "lastName", ""));
-        assertThrows(IllegalArgumentException.class, () -> new Customer("firstName", "lastName", "1234"));
-        assertThrows(IllegalArgumentException.class, () -> new Customer("firstName", "lastName", "abc"));
+        assertThrows(IllegalArgumentException.class, () -> new Customer(null, "firstName", "lastName"));
+        assertThrows(IllegalArgumentException.class, () -> new Customer("", "firstName", "lastName"));
+        assertThrows(IllegalArgumentException.class, () -> new Customer("1234", "firstName", "lastName"));
+        assertThrows(IllegalArgumentException.class, () -> new Customer("abc" , "firstName", "lastName"));
     }
 
     @Test
@@ -45,22 +45,22 @@ class CustomerTest {
 
     @Test
     void testEquals() {
-        Customer  customer = new Customer("firstName", "lastName", "email@nodomain.com");
+        Customer  customer = new Customer("email@nodomain.com", "firstName", "lastName");
 
         assertEquals(customerUnderTest, customer);
 
-        customer = new Customer("firstName", "lastName", "email@nodomain.io");
+        customer = new Customer("email@nodomain.io", "firstName", "lastName");
 
         assertNotEquals(customerUnderTest, customer);
     }
 
     @Test
     void testHashCode() {
-        Customer  customer = new Customer("firstName", "lastName", "email@nodomain.com");
+        Customer  customer = new Customer("email@nodomain.com", "firstName", "lastName");
 
         assertEquals(customer.hashCode(), customerUnderTest.hashCode());
 
-        customer = new Customer("firstName", "lastName", "email@nodomain.io");
+        customer = new Customer("email@nodomain.io", "firstName", "lastName");
 
         assertNotEquals(customer.hashCode(), customerUnderTest.hashCode());
     }
