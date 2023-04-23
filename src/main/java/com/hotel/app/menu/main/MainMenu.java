@@ -107,17 +107,17 @@ public class MainMenu extends AbstractMenu {
             throw new IllegalArgumentException("Check-in date and check-out dates must be in the future.");
         }
 
-        Collection<IRoom> rooms = HotelResource.getInstance().findARoom(checkInDate, checkOutDate);
+        Collection<IRoom> availableRooms = HotelResource.getInstance().findARoom(checkInDate, checkOutDate);
 
-        if (rooms == null || rooms.isEmpty()) {
-            System.out.println("No rooms available for the date range provided.");
+        if (availableRooms == null || availableRooms.isEmpty()) {
+            System.out.println("No availableRooms available for the date range provided.");
         } else {
-            rooms.forEach(System.out::println);
+            availableRooms.forEach(System.out::println);
 
             String answer = mainMenuPrompter.promptReserveRoom();
             PatternValidator yesValidator = new PatternValidator("^(yes|y)$");
             if (yesValidator.validate(answer)) {
-                reserveRoom(checkInDate, checkOutDate);
+                reserveRoom(checkInDate, checkOutDate, availableRooms);
             }
         }
 
@@ -128,11 +128,15 @@ public class MainMenu extends AbstractMenu {
     }
 
     // Auxiliary method to handle the execution of Option 1 - Find and Reserve a Room (this method handle reserving a room)
-    private void reserveRoom(LocalDate checkIn, LocalDate checkOut) {
+    private void reserveRoom(LocalDate checkIn, LocalDate checkOut, Collection<IRoom> availableRooms) {
         String email = mainMenuPrompter.promptEmail();
         String roomNumber = mainMenuPrompter.promptRoomNumber();
 
         IRoom room = HotelResource.getInstance().getRoom(roomNumber);
+
+        if (!availableRooms.contains(room)) {
+            throw new IllegalArgumentException("Room is not available.");
+        }
 
         HotelResource.getInstance().bookARoom(email, room, checkIn, checkOut);
 

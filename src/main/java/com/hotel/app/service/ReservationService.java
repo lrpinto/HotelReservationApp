@@ -60,6 +60,10 @@ public class ReservationService {
     public Collection<IRoom> findRooms(LocalDate checkInDate, LocalDate checkOutDate) {
         Set<IRoom> availableRooms = new HashSet<>(rooms);
         this.reservationsByCustomer.values().forEach(reservations -> reservations.forEach(reservation -> {
+            /*
+             * Avoid conflicting reservations. A single room may only be reserved by a single customer
+             * per check-in and check-out date range.
+             */
             if (reservation.isOverlap(checkInDate, checkOutDate)) {
                 availableRooms.remove(reservation.getRoom());
             }
