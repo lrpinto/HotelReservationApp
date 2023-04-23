@@ -7,7 +7,10 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>20</maven.compiler.release>
+        <source>20</source>
+        <target>20</target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
