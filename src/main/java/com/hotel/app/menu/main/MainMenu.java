@@ -180,7 +180,6 @@ public class MainMenu extends AbstractMenu {
                     System.out.println("================================================================");
                     System.out.println(reservation);
                     System.out.println("================================================================");
-
                 });
             }
         }
