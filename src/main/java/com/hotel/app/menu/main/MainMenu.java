@@ -111,7 +111,7 @@ public class MainMenu extends AbstractMenu {
         Collection<IRoom> availableRooms = HotelResource.getInstance().findARoom(checkInDate, checkOutDate);
 
         if (availableRooms == null || availableRooms.isEmpty()) {
-            System.out.println("No available for the date range provided.");
+            System.out.println("No rooms available for the date range provided.");
 
             LocalDate recommendedCheckIn = checkInDate.plusDays(DAYS_TO_ADD);
             LocalDate recommendedCheckOut = checkOutDate.plusDays(DAYS_TO_ADD);
