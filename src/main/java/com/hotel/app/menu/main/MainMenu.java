@@ -121,6 +121,9 @@ public class MainMenu extends AbstractMenu {
             if (availableRooms != null && !availableRooms.isEmpty()) {
                 System.out.printf("\nShowing recommended rooms for %d days later - from '%s' to '%s':\n",
                         DAYS_TO_ADD, recommendedCheckIn, recommendedCheckOut);
+
+                checkInDate = recommendedCheckIn;
+                checkOutDate = recommendedCheckOut;
             }
         }
 
