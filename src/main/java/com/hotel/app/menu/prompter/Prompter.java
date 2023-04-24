@@ -59,6 +59,7 @@ public record Prompter(Scanner scanner) implements IPrompter {
                     aInt = Integer.parseInt(input);
                     if (aInt < min || aInt > max) {
                         System.out.print(secondaryPrompt);
+                        aInt = null;
                     }
                 }
             } catch (Exception ex) {
