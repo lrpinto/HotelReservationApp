@@ -33,4 +33,6 @@ public class Regex {
      * A regex that matches 'yes', 'no', 'y' e 'n' Strings.
      */
     public static final String YES_OR_NO_REGEX = "^(yes|y|no|n)$";
+
+    public static String NUMBER_REGEX = "^[0-9]*$";
 }

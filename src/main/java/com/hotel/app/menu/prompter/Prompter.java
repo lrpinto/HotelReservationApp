@@ -32,12 +32,12 @@ public record Prompter(Scanner scanner) implements IPrompter {
                     String input = scanner().next();
                     aDouble = Double.parseDouble(input);
                     if (aDouble < minValue) {
-                        System.out.println(secondaryPrompt);
+                        System.out.print(secondaryPrompt);
                         aDouble = null;
                     }
                 }
             } catch (Exception ex) {
-                System.out.println(secondaryPrompt);
+                System.out.print(secondaryPrompt);
                 aDouble = null;
             }
         } while (aDouble == null);
@@ -58,11 +58,11 @@ public record Prompter(Scanner scanner) implements IPrompter {
                     String input = scanner().next();
                     aInt = Integer.parseInt(input);
                     if (aInt < min || aInt > max) {
-                        System.out.println(secondaryPrompt);
+                        System.out.print(secondaryPrompt);
                     }
                 }
             } catch (Exception ex) {
-                System.out.println(secondaryPrompt);
+                System.out.print(secondaryPrompt);
                 aInt = null;
             }
         } while (aInt == null);

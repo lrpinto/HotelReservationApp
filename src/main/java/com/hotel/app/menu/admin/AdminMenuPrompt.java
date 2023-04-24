@@ -17,7 +17,7 @@ public class AdminMenuPrompt {
     /**
      * The message displayed to prompt a user to enter a room number.
      */
-    public static final String ENTER_A_ROOM_NUMBER = "Please enter a room number, e.g. 1A: ";
+    public static final String ENTER_A_ROOM_NUMBER = "Please enter a room number, e.g. 1: ";
 
     /**
      * The message displayed to prompt a user to enter a valid room number.
@@ -57,5 +57,5 @@ public class AdminMenuPrompt {
     /**
      * The message displayed to prompt the user to type an alphanumeric room number.
      */
-    public static final String ROOM_NUMBER_MUST_BE_ALPHANUMERIC = "Please enter a room number - must be alphanumeric, e.g. 1A: ";
+    public static final String ROOM_NUMBER_MUST_BE_NUMBER = "Please enter a room number - must be a number, e.g. 1: ";
 }

@@ -87,7 +87,7 @@ public record MainMenuPrompter(Prompter prompter) {
      * @return a String representing an alphanumeric room number.
      */
     public String promptRoomNumber() {
-        return prompter().promptString(TYPE_THE_ROOM_NUMBER_AND_PRESS_ENTER, TYPE_A_VALID_ROOM_NUMBER, AT_LEAST_ONE_NON_EMPTY_CHAR_REGEX);
+        return prompter().promptString(TYPE_THE_ROOM_NUMBER_AND_PRESS_ENTER, TYPE_A_VALID_ROOM_NUMBER, NUMBER_REGEX);
     }
 
 }

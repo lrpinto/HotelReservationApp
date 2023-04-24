@@ -46,7 +46,7 @@ public record AdminMenuPrompter(MainMenuPrompter mainMenuPrompter) {
     public String promptRoomNumber() {
         return mainMenuPrompter()
                 .prompter()
-                .promptString(ENTER_A_ROOM_NUMBER, ROOM_NUMBER_MUST_BE_ALPHANUMERIC, ALPHANUMERIC_STRING_REGEX);
+                .promptString(ENTER_A_ROOM_NUMBER, ROOM_NUMBER_MUST_BE_NUMBER, NUMBER_REGEX);
     }
 
     /**
