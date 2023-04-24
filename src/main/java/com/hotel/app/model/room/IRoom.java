@@ -33,7 +33,7 @@ public interface IRoom {
     /**
      * Return whether this is a FreeRoom.
      *
-     * @return true if the room is free, false otherwise..
+     * @return true if the room is free, false otherwise.
      */
     boolean isFree();
 }

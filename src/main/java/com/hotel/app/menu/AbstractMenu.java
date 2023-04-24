@@ -2,7 +2,6 @@ package com.hotel.app.menu;
 
 import com.hotel.app.menu.exception.InvalidMenuOptionException;
 import com.hotel.app.menu.prompter.IPrompter;
-import com.hotel.app.validator.PatternValidator;
 
 import java.util.NoSuchElementException;
 

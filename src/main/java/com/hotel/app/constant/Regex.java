@@ -12,11 +12,6 @@ public class Regex {
     /**
      * A regex that matches alphanumeric Strings.
      */
-    public static final String ALPHANUMERIC_STRING_REGEX = "^[a-zA-Z0-9]*$";
-
-    /**
-     * A regex that matches alphanumeric Strings.
-     */
     public static final String AT_LEAST_ONE_NON_EMPTY_CHAR_REGEX = "^(?=\\s*\\S).*$";
 
     /**
@@ -34,5 +29,5 @@ public class Regex {
      */
     public static final String YES_OR_NO_REGEX = "^(yes|y|no|n)$";
 
-    public static String NUMBER_REGEX = "^[0-9]*$";
+    public static final String NUMBER_REGEX = "^[0-9]*$";
 }
